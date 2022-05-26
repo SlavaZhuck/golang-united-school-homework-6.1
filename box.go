@@ -1,37 +1,55 @@
 package golang_united_school_homework
 
+import "fmt"
 
 // box contains list of shapes and able to perform operations on them
 type box struct {
 	shapes         []Shape
 	shapesCapacity int // Maximum quantity of shapes that can be inside the box.
+	load           int
 }
 
 // NewBox creates new instance of box
 func NewBox(shapesCapacity int) *box {
 	return &box{
 		shapesCapacity: shapesCapacity,
+		load:           0,
 	}
 }
 
 // AddShape adds shape to the box
 // returns the error in case it goes out of the shapesCapacity range.
 func (b *box) AddShape(shape Shape) error {
-	panic("implement me")
+	var err error = nil
+	if b.load < b.shapesCapacity {
+		b.shapes = append(b.shapes, shape)
+		b.load++
+	} else {
+		err = fmt.Errorf(" Box capacity elapsed ")
+	}
+	return err
 }
 
 // GetByIndex allows getting shape by index
 // whether shape by index doesn't exist or index went out of the range, then it returns an error
 func (b *box) GetByIndex(i int) (Shape, error) {
-	panic("implement me")
-
+	var err error = nil
+	if i < b.shapesCapacity {
+		return b.shapes[i], err
+	} else {
+		return nil, fmt.Errorf(" Box capacity elapsed ")
+	}
 }
 
 // ExtractByIndex allows getting shape by index and removes this shape from the list.
 // whether shape by index doesn't exist or index went out of the range, then it returns an error
 func (b *box) ExtractByIndex(i int) (Shape, error) {
-	panic("implement me")
-
+	var err error = nil
+	if i < b.shapesCapacity {
+		return b.shapes[i], err
+	} else {
+		return nil, fmt.Errorf(" Box capacity elapsed ")
+	}
 }
 
 // ReplaceByIndex allows replacing shape by index and returns removed shape.
