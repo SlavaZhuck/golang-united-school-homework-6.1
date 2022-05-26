@@ -90,7 +90,11 @@ func (b *box) SumPerimeter() float64 {
 
 // SumArea provides sum area of all shapes in the list.
 func (b *box) SumArea() float64 {
-	panic("implement me")
+	var sum float64 = 0
+	for _, v := range b.shapes {
+		sum += v.CalcArea()
+	}
+	return sum
 
 }
 
