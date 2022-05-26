@@ -45,11 +45,19 @@ func (b *box) GetByIndex(i int) (Shape, error) {
 // whether shape by index doesn't exist or index went out of the range, then it returns an error
 func (b *box) ExtractByIndex(i int) (Shape, error) {
 	var err error = nil
-	if i < b.shapesCapacity {
-		return b.shapes[i], err
+	var temp Shape = nil
+	if b.load == 0 {
+		err = fmt.Errorf(" box is empty ")
+	} else if i >= 0 && i < b.load {
+		temp = b.shapes[i]
+		b.shapes = append(b.shapes[:i], b.shapes[i+1:]...)
+		b.load--
+	} else if i < b.shapesCapacity {
+		err = fmt.Errorf(" Shape at this index was not added ")
 	} else {
-		return nil, fmt.Errorf(" Box capacity elapsed ")
+		err = fmt.Errorf(" Index is out of range ")
 	}
+	return temp, err
 }
 
 // ReplaceByIndex allows replacing shape by index and returns removed shape.
