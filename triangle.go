@@ -16,3 +16,8 @@ func (t *Triangle) CalcPerimeter() float64 {
 func (t *Triangle) CalcArea() float64 {
 	return (t.Side * t.Side * math.Sqrt(3) / 4)
 }
+
+// TypeOfShape returns type of the shape
+func (t *Triangle) TypeOfShape() string {
+	return "triangle"
+}

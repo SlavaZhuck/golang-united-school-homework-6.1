@@ -14,3 +14,8 @@ func (r *Rectangle) CalcPerimeter() float64 {
 func (r *Rectangle) CalcArea() float64 {
 	return (r.Height * r.Weight)
 }
+
+// TypeOfShape returns type of the shape
+func (t *Rectangle) TypeOfShape() string {
+	return "rectangle"
+}

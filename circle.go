@@ -16,3 +16,8 @@ func (c *Circle) CalcPerimeter() float64 {
 func (c *Circle) CalcArea() float64 {
 	return (float64(math.Pi) * c.Radius * c.Radius)
 }
+
+// TypeOfShape returns type of the shape
+func (t *Circle) TypeOfShape() string {
+	return "circle"
+}
